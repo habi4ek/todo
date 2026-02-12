@@ -36,7 +36,6 @@ mat-card-title {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
-  margin-bottom: 1rem;
 }
 
 mat-form-field {
@@ -55,7 +54,6 @@ mat-form-field {
   }
 }
 
-
 .section-label {
   margin: 0.5rem 0;
   padding: 0 1rem;
@@ -70,7 +68,6 @@ mat-form-field {
   margin: 0.75rem 0;
 }
 
-
 .done {
   text-decoration: line-through;
   color: var(--mat-sys-on-surface-variant);
@@ -80,13 +77,54 @@ mat-card-actions {
   padding: 0.5rem 1rem 1rem;
 }
 
+.add-todo-fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 30;
+}
+
+.add-todo-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 20;
+}
+
+.add-todo-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.add-todo-popup-card {
+  position: relative;
+  width: min(460px, calc(100vw - 2rem));
+  border-radius: 1rem;
+}
+
+.popup-close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
 @media (min-width: 768px) {
   .page {
     padding: 2rem 1rem;
   }
 
   .todo-form {
-    grid-template-columns: 1fr auto;
-    align-items: start;
+    grid-template-columns: 1fr;
   }
 }
