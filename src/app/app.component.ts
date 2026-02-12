@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
 
 interface TodoItem {
   title: string;
@@ -28,7 +29,8 @@ interface TodoItem {
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDividerModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -43,7 +45,15 @@ export class AppComponent {
   ];
 
   get remainingCount(): number {
-    return this.todos.filter((todo) => !todo.done).length;
+    return this.pendingTodos.length;
+  }
+
+  get pendingTodos(): TodoItem[] {
+    return this.todos.filter((todo) => !todo.done);
+  }
+
+  get completedTodos(): TodoItem[] {
+    return this.todos.filter((todo) => todo.done);
   }
 
   addTodo(): void {
@@ -60,7 +70,10 @@ export class AppComponent {
     todo.done = !todo.done;
   }
 
-  removeTodo(index: number): void {
-    this.todos.splice(index, 1);
+  removeTodo(todo: TodoItem): void {
+    const index = this.todos.indexOf(todo);
+    if (index >= 0) {
+      this.todos.splice(index, 1);
+    }
   }
 }
