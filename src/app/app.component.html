@@ -12,19 +12,6 @@
     </mat-card-header>
 
     <mat-card-content>
-      <form class="todo-form" (ngSubmit)="addTodo()">
-        <mat-form-field appearance="outline" subscriptSizing="dynamic">
-          <mat-label>Add a task</mat-label>
-          <input
-            matInput
-            name="newTodo"
-            [(ngModel)]="newTodo"
-            placeholder="e.g. Finalize mobile design"
-          />
-        </mat-form-field>
-        <button mat-flat-button color="primary" type="submit">Add</button>
-      </form>
-
       <mat-list>
         <div class="section-label" *ngIf="pendingTodos.length">To do</div>
         <mat-list-item
@@ -79,3 +66,35 @@
     </mat-card-actions>
   </mat-card>
 </main>
+
+<div class="add-todo-backdrop" *ngIf="isAddTodoPopupOpen" (click)="closeAddTodoPopup()"></div>
+
+<section class="add-todo-popup" *ngIf="isAddTodoPopupOpen" aria-label="Add item popup">
+  <form class="todo-form" (ngSubmit)="addTodo()">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Add a task</mat-label>
+      <input
+        matInput
+        name="newTodo"
+        [(ngModel)]="newTodo"
+        placeholder="e.g. Finalize mobile design"
+        autofocus
+      />
+    </mat-form-field>
+
+    <div class="popup-actions">
+      <button mat-button type="button" (click)="closeAddTodoPopup()">Cancel</button>
+      <button mat-flat-button color="primary" type="submit">Add</button>
+    </div>
+  </form>
+</section>
+
+<button
+  mat-fab
+  color="primary"
+  class="add-todo-fab"
+  aria-label="Add task"
+  (click)="openAddTodoPopup()"
+>
+  <mat-icon>add</mat-icon>
+</button>

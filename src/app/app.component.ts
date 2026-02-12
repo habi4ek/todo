@@ -38,6 +38,7 @@ interface TodoItem {
 })
 export class AppComponent {
   newTodo = '';
+  isAddTodoPopupOpen = false;
   todos: TodoItem[] = [
     { title: 'Plan weekly sprint', done: false },
     { title: 'Review pull requests', done: true },
@@ -56,6 +57,14 @@ export class AppComponent {
     return this.todos.filter((todo) => todo.done);
   }
 
+  openAddTodoPopup(): void {
+    this.isAddTodoPopupOpen = true;
+  }
+
+  closeAddTodoPopup(): void {
+    this.isAddTodoPopupOpen = false;
+  }
+
   addTodo(): void {
     const title = this.newTodo.trim();
     if (!title) {
@@ -64,6 +73,7 @@ export class AppComponent {
 
     this.todos.unshift({ title, done: false });
     this.newTodo = '';
+    this.closeAddTodoPopup();
   }
 
   toggleTodo(todo: TodoItem): void {
