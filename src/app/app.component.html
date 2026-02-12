@@ -70,23 +70,42 @@
 <div class="add-todo-backdrop" *ngIf="isAddTodoPopupOpen" (click)="closeAddTodoPopup()"></div>
 
 <section class="add-todo-popup" *ngIf="isAddTodoPopupOpen" aria-label="Add item popup">
-  <form class="todo-form" (ngSubmit)="addTodo()">
-    <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Add a task</mat-label>
-      <input
-        matInput
-        name="newTodo"
-        [(ngModel)]="newTodo"
-        placeholder="e.g. Finalize mobile design"
-        autofocus
-      />
-    </mat-form-field>
+  <mat-card appearance="raised" class="add-todo-popup-card">
+    <button
+      mat-icon-button
+      class="popup-close-button"
+      type="button"
+      aria-label="Close add task popup"
+      (click)="closeAddTodoPopup()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
 
-    <div class="popup-actions">
-      <button mat-button type="button" (click)="closeAddTodoPopup()">Cancel</button>
-      <button mat-flat-button color="primary" type="submit">Add</button>
-    </div>
-  </form>
+    <mat-card-header>
+      <mat-card-title>Add task</mat-card-title>
+      <mat-card-subtitle>Create a new item for your list.</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form class="todo-form" (ngSubmit)="addTodo()">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Add a task</mat-label>
+          <input
+            matInput
+            name="newTodo"
+            [(ngModel)]="newTodo"
+            placeholder="e.g. Finalize mobile design"
+            autofocus
+          />
+        </mat-form-field>
+
+        <div class="popup-actions">
+          <button mat-button type="button" (click)="closeAddTodoPopup()">Cancel</button>
+          <button mat-flat-button color="primary" type="submit">Add</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </section>
 
 <button
