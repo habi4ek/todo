@@ -71,6 +71,11 @@ export class AppComponent {
   }
 
   removeTodo(todo: TodoItem): void {
+    const shouldDelete = window.confirm(`Delete "${todo.title}"? This action cannot be undone.`);
+    if (!shouldDelete) {
+      return;
+    }
+
     const index = this.todos.indexOf(todo);
     if (index >= 0) {
       this.todos.splice(index, 1);
