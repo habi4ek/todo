@@ -5,33 +5,41 @@
 </mat-toolbar>
 
 <main class="page">
-  <mat-card class="todo-card" appearance="outlined">
-    <h1>Today</h1>
-    <p class="subtitle">Ship what matters first.</p>
+  <mat-card class="todo-card" appearance="raised">
+    <mat-card-header>
+      <mat-card-title>Today</mat-card-title>
+      <mat-card-subtitle>Ship what matters first.</mat-card-subtitle>
+    </mat-card-header>
 
-    <form class="todo-form" (ngSubmit)="addTodo()">
-      <mat-form-field appearance="outline" subscriptSizing="dynamic">
-        <mat-label>Add a task</mat-label>
-        <input
-          matInput
-          name="newTodo"
-          [(ngModel)]="newTodo"
-          placeholder="e.g. Finalize mobile design"
-        />
-      </mat-form-field>
-      <button mat-flat-button color="primary" type="submit">Add</button>
-    </form>
+    <mat-card-content>
+      <form class="todo-form" (ngSubmit)="addTodo()">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Add a task</mat-label>
+          <input
+            matInput
+            name="newTodo"
+            [(ngModel)]="newTodo"
+            placeholder="e.g. Finalize mobile design"
+          />
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit">Add</button>
+      </form>
 
-    <mat-list>
-      <mat-list-item *ngFor="let todo of todos; index as i">
-        <button mat-icon-button (click)="toggleTodo(todo)" [attr.aria-label]="todo.done ? 'Mark not done' : 'Mark done'">
-          <mat-icon>{{ todo.done ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
-        </button>
-        <span [class.done]="todo.done">{{ todo.title }}</span>
-        <button mat-icon-button color="warn" (click)="removeTodo(i)" aria-label="Delete task">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-list>
+      <mat-list>
+        <mat-list-item *ngFor="let todo of todos; index as i" class="todo-item">
+          <button mat-icon-button (click)="toggleTodo(todo)" [attr.aria-label]="todo.done ? 'Mark not done' : 'Mark done'">
+            <mat-icon>{{ todo.done ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+          </button>
+          <span [class.done]="todo.done">{{ todo.title }}</span>
+          <button mat-icon-button color="warn" (click)="removeTodo(i)" aria-label="Delete task">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button color="primary">View all tasks</button>
+    </mat-card-actions>
   </mat-card>
 </main>
