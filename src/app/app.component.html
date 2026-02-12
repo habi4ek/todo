@@ -26,12 +26,26 @@
       </form>
 
       <mat-list>
-        <mat-list-item *ngFor="let todo of todos; index as i" class="todo-item">
-          <button mat-icon-button (click)="toggleTodo(todo)" [attr.aria-label]="todo.done ? 'Mark not done' : 'Mark done'">
-            <mat-icon>{{ todo.done ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+        <div class="section-label" *ngIf="pendingTodos.length">To do</div>
+        <mat-list-item *ngFor="let todo of pendingTodos" class="todo-item">
+          <button mat-icon-button (click)="toggleTodo(todo)" aria-label="Mark done">
+            <mat-icon>radio_button_unchecked</mat-icon>
           </button>
-          <span [class.done]="todo.done">{{ todo.title }}</span>
-          <button mat-icon-button color="warn" (click)="removeTodo(i)" aria-label="Delete task">
+          <span>{{ todo.title }}</span>
+          <button mat-icon-button color="warn" (click)="removeTodo(todo)" aria-label="Delete task">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+
+        <mat-divider *ngIf="pendingTodos.length && completedTodos.length" class="section-divider"></mat-divider>
+
+        <div class="section-label" *ngIf="completedTodos.length">Completed</div>
+        <mat-list-item *ngFor="let todo of completedTodos" class="todo-item">
+          <button mat-icon-button (click)="toggleTodo(todo)" aria-label="Mark not done">
+            <mat-icon>check_circle</mat-icon>
+          </button>
+          <span class="done">{{ todo.title }}</span>
+          <button mat-icon-button color="warn" (click)="removeTodo(todo)" aria-label="Delete task">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-list-item>
