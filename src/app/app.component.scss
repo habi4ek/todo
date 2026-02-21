@@ -42,6 +42,16 @@ mat-form-field {
   width: 100%;
 }
 
+.status-text {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.status-error {
+  color: var(--mat-sys-error);
+}
+
 .todo-item {
   margin-bottom: 0.5rem;
   border-radius: 0.75rem;
